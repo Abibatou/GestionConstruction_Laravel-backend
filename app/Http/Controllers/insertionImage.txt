@@ -1,0 +1,15 @@
+  
+        $nomQuincaillerie = new NomQuincaillerie;
+        $nomQuincaillerie->nom = request('nom');
+       if($request->hasFile('image')){
+           $file = $request->file('image');
+           $filename = time() . '.' . $file->getClientOriginalExtension();
+           $destinationPath =  '/public/images/';
+           $file->move($destinationPath, $filename);
+           $path = '/public/images/'.$filename;
+           $url = url($path);
+          $nomQuincaillerie->url = $url;
+   
+       }
+       $nomQuincaillerie->save();
+            
